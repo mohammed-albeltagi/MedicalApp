@@ -12,23 +12,23 @@ steps:
   displayName: Build
   inputs:
     command: build
-    projects: './MedicalApp.API.csproj'
+    projects: '*/.API/*.csproj'
     arguments: '--configuration Release'
 
 - task: Npm@1
   displayName: 'npm install'
   inputs:
     command: install
-    workingDir: MedicalApp-SPA
+    workingDir: HIS-SPA
 
 - task: Npm@1
   displayName: 'Build Angular'
   inputs:
     command: custom
     customCommand: run build
-    workingDir: MedicalApp-SPA
+    workingDir: HIS-SPA
 
 - task: PublishPipelineArtifact@0
   inputs:
     artifactName: 'angular'
-    targetPath: 'MedicalApp-SPA/dist'
+    targetPath: 'HIS-SPA/dist'
