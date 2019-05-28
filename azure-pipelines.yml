@@ -12,7 +12,7 @@ steps:
   displayName: Build
   inputs:
     command: build
-    projects: '*/.API/*.csproj'
+    projects: './MedicalApp.API.csproj'
     arguments: '--configuration Release'
 
 - task: Npm@1
