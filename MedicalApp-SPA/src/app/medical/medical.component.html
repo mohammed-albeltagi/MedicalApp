@@ -1,0 +1,91 @@
+<div *ngIf="doctors">
+  Name: {{doctors.doctor.firstName}} {{doctors.doctor.lastName}} 
+  <br>
+  Gender: <span *ngIf="doctors.doctor.gender == false">Female</span>
+          <span *ngIf="doctors.doctor.gender == true">Male</span>
+
+  <br>
+  Email: {{doctors.doctor.email}} 
+  <br>
+  Years of experience: {{doctors.doctor.yearsOfExperience}} 
+  <br>
+  Birth Date: {{doctors.doctor.birthDate | date:'shortDate'}} 
+</div>
+  <br>
+  <br>  
+  <br>
+  <form #submitForm="ngForm" (ngSubmit)="addPatient(doctors.doctor.doctorId)">
+  <table>
+    <tbody>
+      <tr>
+        <td>Patient First Name</td>
+        <td><input type="text" name="firstName" required [(ngModel)]="patient.firstName"></td>
+        <td>Patient Last Name</td>
+        <td><input type="text" name="lastName" required [(ngModel)]="patient.lastName"></td>
+      </tr>
+      <tr>
+        <td>Patient Gender</td>
+        <td><input [(ngModel)]="patient.gender" name="gender" [value]="true"  type="radio">Male
+          <input [(ngModel)]="patient.gender" name="gender" [value]="false" type="radio">Female
+        </td>
+        <td>Patient Email</td>
+        <td><input [(ngModel)]="patient.email" required name="email" type="email"></td>
+      </tr>
+      <tr>
+        <td>Patient Mobile</td>
+        <td><input [(ngModel)]="patient.mobilePhone" required name="mobilePhone" type="number">Male</td>
+        <td>Patient Birth Date</td>
+        <td><input [(ngModel)]="patient.birthDate" name="birthDate" type="date"></td>
+      </tr>
+      <tr>
+        <input type="submit" value="Save" >
+      </tr>
+    </tbody>
+  </table>
+  </form>
+
+  <table class="table">
+    <thead>
+      
+        <th>
+          First Name
+        </th>
+      
+      <th>
+          Last Name
+        </th>
+      
+        <th>
+            Gender
+          </th>
+        
+          <th>
+              Email
+            </th>
+          
+            <th>
+                Mobile
+              </th>
+          
+              <th>
+                  Birth Date
+                </th>
+              
+    </thead>
+      <tbody *ngIf="doctors">
+    <tr *ngFor="let item of doctors.patients">
+      <td>{{item.firstName}}</td>
+      <td>{{item.lastName}}</td>
+      <td><span *ngIf="item.gender == false">Female</span>
+        <span *ngIf="item.gender == true">Male</span></td>
+      <td>{{item.email}}</td>
+      <td>{{item.mobilePhone}}</td>
+      <td>{{item.birthDate | date:'shortDate'}}</td>
+      <td><input type="button" text="Delete" value="Delete" (click)="deletePatient(item.patientId)"></td>
+    </tr>
+  </tbody>
+  </table>
+
+
+
+
