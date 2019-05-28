@@ -19,16 +19,16 @@ steps:
   displayName: 'npm install'
   inputs:
     command: install
-    workingDir: HIS-SPA
+    workingDir: MedicalApp-SPA
 
 - task: Npm@1
   displayName: 'Build Angular'
   inputs:
     command: custom
     customCommand: run build
-    workingDir: HIS-SPA
+    workingDir: MedicalApp-SPA
 
 - task: PublishPipelineArtifact@0
   inputs:
     artifactName: 'angular'
-    targetPath: 'HIS-SPA/dist'
+    targetPath: 'MedicalApp-SPA/dist'
